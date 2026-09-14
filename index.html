@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>کتابچه جامع قالب‌های محتوا</title>
+
+  <meta
+    name="description"
+    content="کتابچه جامع قالب‌های محتوا"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- Header -->
+    <header class="topbar">
+
+      <div class="brand">
+        <span class="brand-icon">📖</span>
+        <div>
+          <h1>کتابچه جامع قالب‌های محتوا</h1>
+          <span>نسخه دیجیتال</span>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button id="themeBtn" title="تغییر حالت نمایش">
+          ☀️
+        </button>
+
+        <button id="fullscreenBtn" title="تمام صفحه">
+          ⛶
+        </button>
+      </div>
+
+    </header>
+
+
+    <!-- Main Reader -->
+    <main class="reader">
+
+      <div class="book-area">
+
+        <button
+          class="nav-btn prev"
+          id="prevBtn"
+          aria-label="صفحه قبل"
+        >
+          ‹
+        </button>
+
+        <div class="book" id="book">
+
+          <div class="book-shadow"></div>
+
+          <div class="page" id="page">
+
+            <img
+              id="pageImage"
+              src="assets/pages/page-001.webp"
+              alt="صفحه کتاب"
+            >
+
+          </div>
+
+        </div>
+
+        <button
+          class="nav-btn next"
+          id="nextBtn"
+          aria-label="صفحه بعد"
+        >
+          ›
+        </button>
+
+      </div>
+
+
+      <!-- Controls -->
+      <div class="controls">
+
+        <button id="firstBtn">
+          ⏮
+        </button>
+
+        <button id="zoomOutBtn">
+          −
+        </button>
+
+        <span id="pageInfo">
+          1 / 1
+        </span>
+
+        <button id="zoomInBtn">
+          ＋
+        </button>
+
+        <button id="lastBtn">
+          ⏭
+        </button>
+
+      </div>
+
+
+      <!-- Progress -->
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div id="progress"></div>
+        </div>
+      </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+      <span>
+        کتابچه جامع قالب‌های محتوا
+      </span>
+
+      <span>
+        ساخته شده برای مطالعه دیجیتال
+      </span>
+
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
