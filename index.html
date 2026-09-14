@@ -1,32 +1,78 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>کتابچه جامع قالب‌های محتوا</title>
 
-  <meta name="description" content="کتابچه جامع قالب‌های محتوا">
+  <meta
+    name="description"
+    content="کتابچه جامع و کاربردی قالب‌های محتوا"
+  >
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
+
 
 <body>
 
   <header class="topbar">
 
     <div class="title">
-      <span class="book-icon">📖</span>
+
+      <span class="book-icon">
+        📖
+      </span>
 
       <div>
-        <h1>کتابچه جامع قالب‌های محتوا</h1>
-        <small>نسخه دیجیتال</small>
+
+        <h1>
+          کتابچه جامع قالب‌های محتوا
+        </h1>
+
+        <small>
+          نسخه دیجیتال
+        </small>
+
       </div>
+
     </div>
 
+
     <div class="actions">
-      <button id="themeBtn">🌙</button>
-      <button id="fullscreenBtn">⛶</button>
+
+      <button
+        id="tocBtn"
+        title="فهرست مطالب"
+      >
+        ☰
+      </button>
+
+      <button
+        id="themeBtn"
+        title="حالت شب"
+      >
+        🌙
+      </button>
+
+      <button
+        id="fullscreenBtn"
+        title="تمام صفحه"
+      >
+        ⛶
+      </button>
+
     </div>
 
   </header>
@@ -34,17 +80,31 @@
 
   <main>
 
+
+    <!-- READER -->
+
     <section class="reader">
 
-      <button class="nav prev" id="prevBtn">‹</button>
+      <button
+        class="nav prev"
+        id="prevBtn"
+        aria-label="صفحه قبل"
+      >
+        ‹
+      </button>
+
 
       <article class="book">
 
         <div class="page">
 
-          <div class="page-number" id="pageNumber">
+          <div
+            class="page-number"
+            id="pageNumber"
+          >
             ۱
           </div>
+
 
           <div id="pageContent"></div>
 
@@ -52,25 +112,62 @@
 
       </article>
 
-      <button class="nav next" id="nextBtn">›</button>
+
+      <button
+        class="nav next"
+        id="nextBtn"
+        aria-label="صفحه بعد"
+      >
+        ›
+      </button>
 
     </section>
 
+
+    <!-- CONTROLS -->
 
     <section class="controls">
 
-      <button id="firstBtn">⏮</button>
+      <button
+        id="firstBtn"
+        title="اول کتاب"
+      >
+        ⏮
+      </button>
 
-      <button id="zoomOutBtn">−</button>
 
-      <span id="pageInfo">۱ / ۳۶</span>
+      <button
+        id="zoomOutBtn"
+        title="کوچک‌تر"
+      >
+        −
+      </button>
 
-      <button id="zoomInBtn">＋</button>
 
-      <button id="lastBtn">⏭</button>
+      <span id="pageInfo">
+        ۱ / ۱
+      </span>
+
+
+      <button
+        id="zoomInBtn"
+        title="بزرگ‌تر"
+      >
+        ＋
+      </button>
+
+
+      <button
+        id="lastBtn"
+        title="آخر کتاب"
+      >
+        ⏭
+      </button>
 
     </section>
 
+
+    <!-- PROGRESS -->
 
     <div class="progress">
 
@@ -80,18 +177,58 @@
 
 
     <div class="hint">
-      برای جابه‌جایی بین صفحات از دکمه‌ها یا کشیدن صفحه استفاده کن
+
+      برای جابه‌جایی بین صفحات
+      از دکمه‌ها یا کشیدن صفحه استفاده کن
+
     </div>
 
   </main>
 
 
+  <!-- TABLE OF CONTENTS -->
+
+  <aside
+    id="tocPanel"
+    class="toc-panel"
+  >
+
+    <div class="toc-header">
+
+      <strong>
+        فهرست مطالب
+      </strong>
+
+      <button id="closeToc">
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      id="tocList"
+      class="toc-list"
+    ></div>
+
+  </aside>
+
+
+  <div
+    id="tocOverlay"
+    class="toc-overlay"
+  ></div>
+
+
   <footer>
+
     کتابچه جامع قالب‌های محتوا
+
   </footer>
 
 
   <script src="app.js"></script>
 
 </body>
+
 </html>
