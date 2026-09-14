@@ -1,234 +1,122 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>کتابچه جامع قالب‌های محتوا</title>
 
-  <meta
-    name="description"
-    content="کتابچه جامع و کاربردی قالب‌های محتوا"
-  >
+  <meta name="theme-color" content="#111827">
 
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
-
+  <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-  <header class="topbar">
+  <div class="app">
 
-    <div class="title">
+    <!-- Header -->
+    <header class="topbar">
 
-      <span class="book-icon">
-        📖
-      </span>
-
-      <div>
-
-        <h1>
-          کتابچه جامع قالب‌های محتوا
-        </h1>
-
-        <small>
-          نسخه دیجیتال
-        </small>
-
-      </div>
-
-    </div>
-
-
-    <div class="actions">
-
-      <button
-        id="tocBtn"
-        title="فهرست مطالب"
-      >
+      <button class="icon-btn" id="menuBtn" aria-label="فهرست">
         ☰
       </button>
 
-      <button
-        id="themeBtn"
-        title="حالت شب"
-      >
-        🌙
+      <div class="book-title">
+        <strong>کتابچه جامع قالب‌های محتوا</strong>
+        <span>راهنمای کاربردی تولید محتوا</span>
+      </div>
+
+      <button class="icon-btn" id="themeBtn" aria-label="حالت شب">
+        ☾
       </button>
 
-      <button
-        id="fullscreenBtn"
-        title="تمام صفحه"
-      >
-        ⛶
-      </button>
+    </header>
 
+
+    <!-- Progress -->
+    <div class="progress-area">
+      <div class="progress">
+        <div id="progressBar"></div>
+      </div>
+
+      <div class="page-info">
+        <span id="pageNumber">۱</span>
+        <span>از</span>
+        <span id="totalPages">۱</span>
+      </div>
     </div>
 
-  </header>
 
+    <!-- Book -->
+    <main class="book-area">
 
-  <main>
-
-
-    <!-- READER -->
-
-    <section class="reader">
-
-      <button
-        class="nav prev"
-        id="prevBtn"
-        aria-label="صفحه قبل"
-      >
+      <button class="nav-btn prev" id="prevBtn">
         ‹
       </button>
 
+      <div class="book">
 
-      <article class="book">
-
-        <div class="page">
-
-          <div
-            class="page-number"
-            id="pageNumber"
-          >
-            ۱
-          </div>
-
-
-          <div id="pageContent"></div>
-
+        <div id="pages" class="pages">
+          <!-- صفحات با JavaScript ساخته می‌شوند -->
         </div>
 
-      </article>
+      </div>
 
-
-      <button
-        class="nav next"
-        id="nextBtn"
-        aria-label="صفحه بعد"
-      >
+      <button class="nav-btn next" id="nextBtn">
         ›
       </button>
 
-    </section>
+    </main>
 
 
-    <!-- CONTROLS -->
+    <!-- Bottom controls -->
+    <footer class="controls">
 
-    <section class="controls">
-
-      <button
-        id="firstBtn"
-        title="اول کتاب"
-      >
+      <button id="firstBtn">
         ⏮
+        <span>اول</span>
       </button>
 
-
-      <button
-        id="zoomOutBtn"
-        title="کوچک‌تر"
-      >
-        −
+      <button id="prevBottomBtn">
+        ←
+        <span>قبلی</span>
       </button>
 
-
-      <span id="pageInfo">
-        ۱ / ۱
-      </span>
-
-
-      <button
-        id="zoomInBtn"
-        title="بزرگ‌تر"
-      >
-        ＋
+      <button id="nextBottomBtn">
+        →
+        <span>بعدی</span>
       </button>
 
-
-      <button
-        id="lastBtn"
-        title="آخر کتاب"
-      >
+      <button id="lastBtn">
         ⏭
+        <span>آخر</span>
       </button>
 
-    </section>
+    </footer>
 
 
-    <!-- PROGRESS -->
+    <!-- Menu -->
+    <aside id="sideMenu" class="side-menu">
 
-    <div class="progress">
+      <div class="menu-header">
+        <strong>فهرست کتاب</strong>
 
-      <div id="progressBar"></div>
+        <button id="closeMenu">
+          ×
+        </button>
+      </div>
 
-    </div>
+      <div id="toc" class="toc"></div>
 
+    </aside>
 
-    <div class="hint">
+    <div id="overlay" class="overlay"></div>
 
-      برای جابه‌جایی بین صفحات
-      از دکمه‌ها یا کشیدن صفحه استفاده کن
-
-    </div>
-
-  </main>
-
-
-  <!-- TABLE OF CONTENTS -->
-
-  <aside
-    id="tocPanel"
-    class="toc-panel"
-  >
-
-    <div class="toc-header">
-
-      <strong>
-        فهرست مطالب
-      </strong>
-
-      <button id="closeToc">
-        ×
-      </button>
-
-    </div>
-
-
-    <div
-      id="tocList"
-      class="toc-list"
-    ></div>
-
-  </aside>
-
-
-  <div
-    id="tocOverlay"
-    class="toc-overlay"
-  ></div>
-
-
-  <footer>
-
-    کتابچه جامع قالب‌های محتوا
-
-  </footer>
+  </div>
 
 
   <script src="app.js"></script>
 
 </body>
-
 </html>
