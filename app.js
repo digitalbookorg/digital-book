@@ -1004,11 +1004,20 @@ const pages = [
 ];
 
 
+/* =========================
+   BOOK SETTINGS
+========================= */
+
 const TOTAL_PAGES = pages.length;
 
 let currentPage = 0;
 
 let zoom = 1;
+
+
+/* =========================
+   ELEMENTS
+========================= */
 
 const content =
   document.getElementById("pageContent");
@@ -1049,98 +1058,185 @@ const themeBtn =
 const fullscreenBtn =
   document.getElementById("fullscreenBtn");
 
+const tocBtn =
+  document.getElementById("tocBtn");
+
+const tocPanel =
+  document.getElementById("tocPanel");
+
+const tocOverlay =
+  document.getElementById("tocOverlay");
+
+const closeToc =
+  document.getElementById("closeToc");
+
+const tocList =
+  document.getElementById("tocList");
+
+
+/* =========================
+   PERSIAN NUMBERS
+========================= */
 
 function persianNumber(number) {
 
   const numbers = [
-    "۰","۱","۲","۳","۴",
-    "۵","۶","۷","۸","۹"
+    "۰",
+    "۱",
+    "۲",
+    "۳",
+    "۴",
+    "۵",
+    "۶",
+    "۷",
+    "۸",
+    "۹"
   ];
 
   return String(number)
     .split("")
-    .map(n => numbers[n] || n)
+    .map(
+      n => numbers[n] || n
+    )
     .join("");
 }
 
 
+/* =========================
+   SHOW PAGE
+========================= */
+
 function showPage() {
 
-  const data = pages[currentPage];
+  const data =
+    pages[currentPage];
+
+  if (!data) {
+    return;
+  }
+
 
   content.innerHTML = `
     <h2>${data.title}</h2>
     ${data.content}
   `;
 
+
   const current =
-    persianNumber(currentPage + 1);
+    persianNumber(
+      currentPage + 1
+    );
+
 
   const total =
-    persianNumber(TOTAL_PAGES);
+    persianNumber(
+      TOTAL_PAGES
+    );
 
-  pageNumber.textContent = current;
+
+  pageNumber.textContent =
+    current;
+
 
   pageInfo.textContent =
     `${current} / ${total}`;
 
+
   const percent =
-    ((currentPage + 1) / TOTAL_PAGES) * 100;
+    ((currentPage + 1) /
+      TOTAL_PAGES) * 100;
+
 
   progress.style.width =
     `${percent}%`;
 
+
   prevBtn.disabled =
     currentPage === 0;
 
+
   nextBtn.disabled =
-    currentPage === TOTAL_PAGES - 1;
+    currentPage ===
+    TOTAL_PAGES - 1;
+
 
   firstBtn.disabled =
     currentPage === 0;
 
+
   lastBtn.disabled =
-    currentPage === TOTAL_PAGES - 1;
+    currentPage ===
+    TOTAL_PAGES - 1;
+
 
   page.style.transform =
     `scale(${zoom})`;
+
 
   localStorage.setItem(
     "bookPage",
     currentPage
   );
+
+
+  updateActiveTOC();
+
 }
 
 
+/* =========================
+   NEXT PAGE
+========================= */
+
 function nextPage() {
 
-  if (currentPage < TOTAL_PAGES - 1) {
+  if (
+    currentPage <
+    TOTAL_PAGES - 1
+  ) {
 
     currentPage++;
 
     showPage();
 
-    window.scrollTo(0, 0);
+    page.scrollTop = 0;
+
   }
+
 }
 
 
+/* =========================
+   PREVIOUS PAGE
+========================= */
+
 function previousPage() {
 
-  if (currentPage > 0) {
+  if (
+    currentPage > 0
+  ) {
 
     currentPage--;
 
     showPage();
 
-    window.scrollTo(0, 0);
+    page.scrollTop = 0;
+
   }
+
 }
 
 
-nextBtn.onclick = nextPage;
+/* =========================
+   BUTTONS
+========================= */
 
-prevBtn.onclick = previousPage;
+nextBtn.onclick =
+  nextPage;
+
+
+prevBtn.onclick =
+  previousPage;
 
 
 firstBtn.onclick = () => {
@@ -1148,6 +1244,9 @@ firstBtn.onclick = () => {
   currentPage = 0;
 
   showPage();
+
+  page.scrollTop = 0;
+
 };
 
 
@@ -1157,103 +1256,189 @@ lastBtn.onclick = () => {
     TOTAL_PAGES - 1;
 
   showPage();
+
+  page.scrollTop = 0;
+
 };
 
 
+/* =========================
+   ZOOM
+========================= */
+
 zoomInBtn.onclick = () => {
 
-  zoom = Math.min(
-    zoom + 0.1,
-    1.6
-  );
+  zoom =
+    Math.min(
+      zoom + 0.1,
+      1.6
+    );
 
-  showPage();
+  page.style.transform =
+    `scale(${zoom})`;
+
 };
 
 
 zoomOutBtn.onclick = () => {
 
-  zoom = Math.max(
-    zoom - 0.1,
-    0.8
-  );
+  zoom =
+    Math.max(
+      zoom - 0.1,
+      0.8
+    );
 
-  showPage();
+  page.style.transform =
+    `scale(${zoom})`;
+
 };
 
 
-/* DARK MODE */
+/* =========================
+   DARK MODE
+========================= */
 
 themeBtn.onclick = () => {
 
-  document.body.classList.toggle("dark");
+  document.body.classList.toggle(
+    "dark"
+  );
+
 
   const dark =
-    document.body.classList.contains("dark");
+    document.body.classList.contains(
+      "dark"
+    );
+
 
   themeBtn.textContent =
-    dark ? "☀️" : "🌙";
+    dark
+      ? "☀️"
+      : "🌙";
+
 
   localStorage.setItem(
     "bookTheme",
-    dark ? "dark" : "light"
+    dark
+      ? "dark"
+      : "light"
   );
+
 };
 
 
-/* FULLSCREEN */
+/* =========================
+   FULLSCREEN
+========================= */
 
 fullscreenBtn.onclick = () => {
 
-  if (!document.fullscreenElement) {
+  if (
+    !document.fullscreenElement
+  ) {
 
-    document.documentElement
-      .requestFullscreen();
+    if (
+      document.documentElement
+        .requestFullscreen
+    ) {
+
+      document.documentElement
+        .requestFullscreen();
+
+    }
 
   } else {
 
     document.exitFullscreen();
+
   }
+
 };
 
 
-/* KEYBOARD */
+/* =========================
+   KEYBOARD
+========================= */
 
 document.addEventListener(
   "keydown",
   event => {
 
-    if (event.key === "ArrowRight") {
+    if (
+      event.key ===
+      "ArrowRight"
+    ) {
+
       previousPage();
+
     }
 
-    if (event.key === "ArrowLeft") {
+
+    if (
+      event.key ===
+      "ArrowLeft"
+    ) {
+
       nextPage();
+
     }
 
-    if (event.key === "+") {
+
+    if (
+      event.key === "+"
+      ||
+      event.key === "="
+    ) {
+
       zoomInBtn.click();
+
     }
 
-    if (event.key === "-") {
+
+    if (
+      event.key === "-"
+    ) {
+
       zoomOutBtn.click();
+
+    }
+
+
+    if (
+      event.key === "Escape"
+    ) {
+
+      closeTableOfContents();
+
     }
 
   }
 );
 
 
-/* SWIPE */
+/* =========================
+   SWIPE
+========================= */
 
 let touchStartX = 0;
+
+let touchStartY = 0;
+
 
 page.addEventListener(
   "touchstart",
   event => {
 
     touchStartX =
-      event.changedTouches[0].screenX;
-  }
+      event.changedTouches[0]
+        .screenX;
+
+    touchStartY =
+      event.changedTouches[0]
+        .screenY;
+
+  },
+  { passive: true }
 );
 
 
@@ -1262,52 +1447,293 @@ page.addEventListener(
   event => {
 
     const touchEndX =
-      event.changedTouches[0].screenX;
+      event.changedTouches[0]
+        .screenX;
 
-    const distance =
-      touchEndX - touchStartX;
+    const touchEndY =
+      event.changedTouches[0]
+        .screenY;
 
-    if (Math.abs(distance) < 50) {
+
+    const distanceX =
+      touchEndX -
+      touchStartX;
+
+
+    const distanceY =
+      touchEndY -
+      touchStartY;
+
+
+    if (
+      Math.abs(distanceX) < 50
+    ) {
+
       return;
+
     }
 
-    if (distance > 0) {
+
+    if (
+      Math.abs(distanceX) <
+      Math.abs(distanceY)
+    ) {
+
+      return;
+
+    }
+
+
+    if (
+      distanceX > 0
+    ) {
+
       previousPage();
+
     } else {
+
       nextPage();
+
     }
 
-  }
+  },
+  { passive: true }
 );
 
 
-/* RESTORE PAGE */
+/* =========================
+   TABLE OF CONTENTS
+========================= */
+
+function buildTableOfContents() {
+
+  if (!tocList) {
+    return;
+  }
+
+
+  tocList.innerHTML = "";
+
+
+  pages.forEach(
+    (item, index) => {
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+
+      button.className =
+        "toc-item";
+
+
+      button.dataset.index =
+        index;
+
+
+      button.innerHTML = `
+
+        <span class="toc-number">
+          ${persianNumber(index + 1)}
+        </span>
+
+        <span class="toc-title">
+          ${item.title}
+        </span>
+
+      `;
+
+
+      button.onclick = () => {
+
+        currentPage =
+          index;
+
+        showPage();
+
+        page.scrollTop = 0;
+
+        closeTableOfContents();
+
+      };
+
+
+      tocList.appendChild(
+        button
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================
+   ACTIVE TOC ITEM
+========================= */
+
+function updateActiveTOC() {
+
+  if (!tocList) {
+    return;
+  }
+
+
+  const items =
+    tocList.querySelectorAll(
+      ".toc-item"
+    );
+
+
+  items.forEach(
+    (item, index) => {
+
+      if (
+        index === currentPage
+      ) {
+
+        item.classList.add(
+          "active"
+        );
+
+      } else {
+
+        item.classList.remove(
+          "active"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================
+   OPEN TOC
+========================= */
+
+function openTableOfContents() {
+
+  if (!tocPanel) {
+    return;
+  }
+
+
+  tocPanel.classList.add(
+    "open"
+  );
+
+
+  tocOverlay.classList.add(
+    "show"
+  );
+
+}
+
+
+/* =========================
+   CLOSE TOC
+========================= */
+
+function closeTableOfContents() {
+
+  if (!tocPanel) {
+    return;
+  }
+
+
+  tocPanel.classList.remove(
+    "open"
+  );
+
+
+  tocOverlay.classList.remove(
+    "show"
+  );
+
+}
+
+
+/* =========================
+   TOC EVENTS
+========================= */
+
+if (tocBtn) {
+
+  tocBtn.onclick =
+    openTableOfContents;
+
+}
+
+
+if (closeToc) {
+
+  closeToc.onclick =
+    closeTableOfContents;
+
+}
+
+
+if (tocOverlay) {
+
+  tocOverlay.onclick =
+    closeTableOfContents;
+
+}
+
+
+/* =========================
+   RESTORE LAST PAGE
+========================= */
 
 const savedPage =
   Number(
-    localStorage.getItem("bookPage")
+    localStorage.getItem(
+      "bookPage"
+    )
   );
 
+
 if (
+  Number.isInteger(savedPage) &&
   savedPage >= 0 &&
   savedPage < TOTAL_PAGES
 ) {
 
-  currentPage = savedPage;
+  currentPage =
+    savedPage;
+
 }
 
 
-/* RESTORE THEME */
+/* =========================
+   RESTORE THEME
+========================= */
 
 if (
-  localStorage.getItem("bookTheme")
-  === "dark"
+  localStorage.getItem(
+    "bookTheme"
+  ) === "dark"
 ) {
 
-  document.body.classList.add("dark");
+  document.body.classList.add(
+    "dark"
+  );
 
-  themeBtn.textContent = "☀️";
+
+  themeBtn.textContent =
+    "☀️";
+
 }
 
+
+/* =========================
+   START
+========================= */
+
+buildTableOfContents();
 
 showPage();
