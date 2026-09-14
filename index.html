@@ -6,132 +6,90 @@
 
   <title>کتابچه جامع قالب‌های محتوا</title>
 
-  <meta
-    name="description"
-    content="کتابچه جامع قالب‌های محتوا"
-  >
+  <meta name="description" content="کتابچه جامع قالب‌های محتوا">
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <div class="app">
+  <header class="topbar">
 
-    <!-- Header -->
-    <header class="topbar">
+    <div class="title">
+      <span class="book-icon">📖</span>
 
-      <div class="brand">
-        <span class="brand-icon">📖</span>
-        <div>
-          <h1>کتابچه جامع قالب‌های محتوا</h1>
-          <span>نسخه دیجیتال</span>
-        </div>
+      <div>
+        <h1>کتابچه جامع قالب‌های محتوا</h1>
+        <small>نسخه دیجیتال</small>
       </div>
+    </div>
 
-      <div class="top-actions">
-        <button id="themeBtn" title="تغییر حالت نمایش">
-          ☀️
-        </button>
+    <div class="actions">
+      <button id="themeBtn">🌙</button>
+      <button id="fullscreenBtn">⛶</button>
+    </div>
 
-        <button id="fullscreenBtn" title="تمام صفحه">
-          ⛶
-        </button>
-      </div>
-
-    </header>
+  </header>
 
 
-    <!-- Main Reader -->
-    <main class="reader">
+  <main>
 
-      <div class="book-area">
+    <section class="reader">
 
-        <button
-          class="nav-btn prev"
-          id="prevBtn"
-          aria-label="صفحه قبل"
-        >
-          ‹
-        </button>
+      <button class="nav prev" id="prevBtn">‹</button>
 
-        <div class="book" id="book">
+      <article class="book">
 
-          <div class="book-shadow"></div>
+        <div class="page">
 
-          <div class="page" id="page">
-
-            <img
-              id="pageImage"
-              src="assets/pages/page-001.webp"
-              alt="صفحه کتاب"
-            >
-
+          <div class="page-number" id="pageNumber">
+            ۱
           </div>
 
+          <div id="pageContent"></div>
+
         </div>
 
-        <button
-          class="nav-btn next"
-          id="nextBtn"
-          aria-label="صفحه بعد"
-        >
-          ›
-        </button>
+      </article>
 
-      </div>
+      <button class="nav next" id="nextBtn">›</button>
+
+    </section>
 
 
-      <!-- Controls -->
-      <div class="controls">
+    <section class="controls">
 
-        <button id="firstBtn">
-          ⏮
-        </button>
+      <button id="firstBtn">⏮</button>
 
-        <button id="zoomOutBtn">
-          −
-        </button>
+      <button id="zoomOutBtn">−</button>
 
-        <span id="pageInfo">
-          1 / 1
-        </span>
+      <span id="pageInfo">۱ / ۳۶</span>
 
-        <button id="zoomInBtn">
-          ＋
-        </button>
+      <button id="zoomInBtn">＋</button>
 
-        <button id="lastBtn">
-          ⏭
-        </button>
+      <button id="lastBtn">⏭</button>
 
-      </div>
+    </section>
 
 
-      <!-- Progress -->
-      <div class="progress-container">
-        <div class="progress-bar">
-          <div id="progress"></div>
-        </div>
-      </div>
+    <div class="progress">
 
-    </main>
+      <div id="progressBar"></div>
+
+    </div>
 
 
-    <!-- Footer -->
-    <footer>
+    <div class="hint">
+      برای جابه‌جایی بین صفحات از دکمه‌ها یا کشیدن صفحه استفاده کن
+    </div>
 
-      <span>
-        کتابچه جامع قالب‌های محتوا
-      </span>
+  </main>
 
-      <span>
-        ساخته شده برای مطالعه دیجیتال
-      </span>
 
-    </footer>
+  <footer>
+    کتابچه جامع قالب‌های محتوا
+  </footer>
 
-  </div>
 
   <script src="app.js"></script>
 
